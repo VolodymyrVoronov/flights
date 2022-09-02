@@ -10,9 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lerna": "^5.5.0"
-  },
-  "workspaces": [
-    "packages/*"
-  ]
+    "lerna": "^3.22.1"
+  }
 }
