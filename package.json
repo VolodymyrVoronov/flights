@@ -11,5 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "lerna": "^3.22.1"
+  },
+  "devDependencies": {
+    "generate-react-cli": "^7.3.0"
   }
 }
