@@ -4,6 +4,7 @@ import { useQuery, gql } from "@apollo/client";
 import Logo from "../../components/Logo/Logo";
 import Filters from "../../components/Filters/Filters";
 import TabsFilter from "../../components/TabsFilter/TabsFilter";
+import Tickets from "../../components/Tickets/Tickets";
 
 import styles from "./MainPage.module.css";
 
@@ -30,6 +31,11 @@ const MainPage = (): JSX.Element => {
 
   const [flightsFilters, setFlightsFilters] = useState<IFiltersData[]>([]);
   const [tabsFilter, setTabsFilter] = useState<ITabsFilterData[]>([]);
+  const [sliceIndex, setSliceIndex] = useState(5);
+
+  useEffect(() => {
+    refetch();
+  }, [flightsFilters, tabsFilter]);
 
   const onFlightsFiltersChange = useMemo(
     () =>
@@ -47,11 +53,11 @@ const MainPage = (): JSX.Element => {
     [tabsFilter]
   );
 
-  useEffect(() => {
-    refetch();
-  }, [flightsFilters, tabsFilter]);
+  const onShowMoreButtonClick = () => {
+    setSliceIndex(sliceIndex + 5);
+  };
 
-  console.log(data);
+  const tickets = data;
 
   return (
     <div className={styles.mainPage}>
@@ -66,10 +72,20 @@ const MainPage = (): JSX.Element => {
           <p className={styles.mainPageFiltersTitle}>Stops</p>
           <Filters onFlightsFiltersChange={onFlightsFiltersChange} />
         </div>
-        <div className={styles.mainPageFlights}>
+        <div className={styles.mainPageTicketsContainer}>
           <TabsFilter onTabsFilterChange={onTabsFilterChange} />
 
-          {loading && <div>Loading flights!!!</div>}
+          {error && <div>Error</div>}
+          {!loading && (
+            <>
+              <Tickets tickets={tickets.getAllTickets.slice(0, sliceIndex)} />
+              <br />
+              <br />
+              <button onClick={onShowMoreButtonClick} type="button">
+                Show more tickets
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>
