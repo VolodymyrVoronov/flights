@@ -5,6 +5,7 @@ import Logo from "../../components/Logo/Logo";
 import Filters from "../../components/Filters/Filters";
 import TabsFilter from "../../components/TabsFilter/TabsFilter";
 import Tickets from "../../components/Tickets/Tickets";
+import Spinner from "../../components/Spinner/Spinner";
 
 import styles from "./MainPage.module.css";
 
@@ -76,8 +77,9 @@ const MainPage = (): JSX.Element => {
           <TabsFilter onTabsFilterChange={onTabsFilterChange} />
 
           {error && <div>Error</div>}
+
           {loading ? (
-            <div>Loading</div>
+            <Spinner />
           ) : (
             <>
               <Tickets tickets={tickets.getAllTickets.slice(0, sliceIndex)} />
