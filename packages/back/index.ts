@@ -2,6 +2,7 @@ import express from "express";
 import { ApolloServer, ExpressContext } from "apollo-server-express";
 import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
 import http from "http";
+import cors from "cors";
 
 import Schema from "./schema/Schema";
 import Resolvers from "./resolvers/Resolvers";
@@ -11,6 +12,8 @@ async function startApolloServer(
   resolvers: typeof Resolvers
 ) {
   const app = express();
+
+  app.use(cors());
 
   const httpServer = http.createServer(app);
 

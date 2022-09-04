@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useQuery, gql } from "@apollo/client";
 
 import Logo from "../../components/Logo/Logo";
 import Filters from "../../components/Filters/Filters";
@@ -8,7 +9,25 @@ import styles from "./MainPage.module.css";
 
 import logo from "./../../assets/images/icon-plane-01.png";
 
+const GET_ALL_FLIGHTS = gql`
+  query {
+    getAllTickets {
+      price
+      carrier
+      segments {
+        date
+        origin
+        destination
+        stops
+        duration
+      }
+    }
+  }
+`;
+
 const MainPage = (): JSX.Element => {
+  const { loading, error, data, refetch } = useQuery(GET_ALL_FLIGHTS);
+
   const [flightsFilters, setFlightsFilters] = useState<IFiltersData[]>([]);
   const [tabsFilter, setTabsFilter] = useState<ITabsFilterData[]>([]);
 
@@ -28,6 +47,12 @@ const MainPage = (): JSX.Element => {
     [tabsFilter]
   );
 
+  useEffect(() => {
+    refetch();
+  }, [flightsFilters, tabsFilter]);
+
+  console.log(data);
+
   return (
     <div className={styles.mainPage}>
       <Logo
@@ -43,6 +68,8 @@ const MainPage = (): JSX.Element => {
         </div>
         <div className={styles.mainPageFlights}>
           <TabsFilter onTabsFilterChange={onTabsFilterChange} />
+
+          {loading && <div>Loading flights!!!</div>}
         </div>
       </div>
     </div>
