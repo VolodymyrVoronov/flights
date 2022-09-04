@@ -1,9 +1,6 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 
-export interface IFilterProps
+export interface ITabsFilterProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  boxId: number;
-  title: string;
-  isChecked: boolean;
-  onInputChange: () => void;
+  onTabsFilterChange: (flights: ITabsFilterData[]) => void;
 }

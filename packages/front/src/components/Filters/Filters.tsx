@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, memo, useEffect, useState } from "react";
 import cn from "classnames";
 
 import Filter from "../Filter/Filter";
@@ -55,4 +55,4 @@ const Filters: FC<IFiltersProps> = ({
   );
 };
 
-export default Filters;
+export default memo(Filters);

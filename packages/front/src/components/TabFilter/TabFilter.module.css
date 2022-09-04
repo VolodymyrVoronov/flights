@@ -1,1 +1,56 @@
-.TabFilter {}
+.tabFilter {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+
+  padding: 15px;
+
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+
+  color: #000000;
+
+  border: 2px solid #dfe5ec;
+  border-left-width: 1px;
+  border-right-width: 1px;
+
+  background-color: #ffffff;
+
+  transition: all 0.5s ease;
+
+  cursor: pointer;
+}
+
+.tabFilter:first-child {
+  border-left-width: 2px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.tabFilter:last-child {
+  border-right-width: 2px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.tabFilter:hover {
+  color: #ffffff;
+
+  border: 2px solid #57abf0;
+
+  background-color: #57abf0;
+}
+
+.tabFilterActive {
+  color: #ffffff;
+
+  border: 2px solid #2196f3;
+
+  background-color: #2196f3;
+}

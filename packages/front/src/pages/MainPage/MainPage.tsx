@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import Logo from "../../components/Logo/Logo";
 import Filters from "../../components/Filters/Filters";
+import TabsFilter from "../../components/TabsFilter/TabsFilter";
 
 import styles from "./MainPage.module.css";
 
@@ -9,10 +10,23 @@ import logo from "./../../assets/images/icon-plane-01.png";
 
 const MainPage = (): JSX.Element => {
   const [flightsFilters, setFlightsFilters] = useState<IFiltersData[]>([]);
+  const [tabsFilter, setTabsFilter] = useState<ITabsFilterData[]>([]);
 
-  const onFlightsFiltersChange = (flights: IFiltersData[]) => {
-    setFlightsFilters(flights);
-  };
+  const onFlightsFiltersChange = useMemo(
+    () =>
+      (flights: IFiltersData[]): void => {
+        setFlightsFilters(flights);
+      },
+    [flightsFilters]
+  );
+
+  const onTabsFilterChange = useMemo(
+    () =>
+      (flights: ITabsFilterData[]): void => {
+        setTabsFilter(flights);
+      },
+    [tabsFilter]
+  );
 
   return (
     <div className={styles.mainPage}>
@@ -27,7 +41,9 @@ const MainPage = (): JSX.Element => {
           <p className={styles.mainPageFiltersTitle}>Stops</p>
           <Filters onFlightsFiltersChange={onFlightsFiltersChange} />
         </div>
-        <div className={styles.mainPageFlights}>Right side</div>
+        <div className={styles.mainPageFlights}>
+          <TabsFilter onTabsFilterChange={onTabsFilterChange} />
+        </div>
       </div>
     </div>
   );

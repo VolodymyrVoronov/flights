@@ -27,6 +27,8 @@
   margin-right: 10px;
 
   border: 2px solid #9abbce;
+
+  cursor: pointer;
 }
 
 .filterBoxTitle {
