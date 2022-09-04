@@ -16,7 +16,7 @@ const Schema = gql`
   }
 
   type Query {
-    getAllTickets: [Ticket]
+    getAllTickets(filters: String): [Ticket]
   }
 `;
 

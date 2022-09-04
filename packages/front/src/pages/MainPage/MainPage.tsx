@@ -12,8 +12,8 @@ import styles from "./MainPage.module.css";
 import logo from "./../../assets/images/icon-plane-01.png";
 
 const GET_ALL_FLIGHTS = gql`
-  query {
-    getAllTickets {
+  query GetAllTicket($filters: String) {
+    getAllTickets(filters: $filters) {
       price
       carrier
       segments {
@@ -28,14 +28,19 @@ const GET_ALL_FLIGHTS = gql`
 `;
 
 const MainPage = (): JSX.Element => {
-  const { loading, error, data, refetch } = useQuery(GET_ALL_FLIGHTS);
-
   const [flightsFilters, setFlightsFilters] = useState<IFiltersData[]>([]);
   const [tabsFilter, setTabsFilter] = useState<ITabsFilterData[]>([]);
   const [sliceIndex, setSliceIndex] = useState(5);
 
+  const filters = JSON.stringify([...flightsFilters, ...tabsFilter]);
+
+  const { loading, error, data, refetch } = useQuery(GET_ALL_FLIGHTS, {
+    variables: { filters },
+  });
+
   useEffect(() => {
-    refetch();
+    refetch({ filters });
+    setSliceIndex(5);
   }, [flightsFilters, tabsFilter]);
 
   const onFlightsFiltersChange = useMemo(

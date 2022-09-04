@@ -46,57 +46,51 @@ const Ticket: FC<ITicketProps> = ({
   price,
   carrier,
   segments,
-}): JSX.Element => {
-  console.log(segments);
-
-  return (
-    <div className={styles.ticketContainer}>
-      <div className={styles.ticketHeader}>
-        <span className={styles.ticketPrice}>{price} $</span>
-        <span
-          className={styles.ticketCarrier}
-          style={{ backgroundColor: `${getRandomColor()}` }}
-        >
-          {carrier}
-        </span>
-      </div>
-      {segments.map(({ origin, destination, date, stops, duration }) => (
-        <div key={date + origin} className={styles.ticketInfo}>
-          <div className={styles.ticketInfoBox}>
-            <span className={styles.ticketFlightTimeConnection}>
-              {origin} - {destination}
-            </span>
-            <span className={styles.ticketFlightTime}>
-              {convertISODateToHoursAndMinutes(date)} -{" "}
-              {convertISODateToHoursAndMinutes(
-                addMinutesToDate(date, duration)
-              )}
-            </span>
-          </div>
-          <div className={styles.ticketInfoBox}>
-            <span className={styles.ticketFlightDurationTitle}>Duration</span>
-            <span className={styles.ticketFlightDurationNumber}>
-              {toHoursAndMinutes(duration)}
-            </span>
-          </div>
-          <div className={styles.ticketInfoBox}>
-            <span className={styles.ticketFlightStopsTitle}>
-              {stops.length === 0 ? (
-                <span>Direct</span>
-              ) : (
-                <>
-                  {stops.length === 1
-                    ? `${stops.length} stop`
-                    : `${stops.length} stops`}
-                </>
-              )}
-            </span>
-            <span className={styles.ticketFlightStops}>{stops.join(" ")}</span>
-          </div>
-        </div>
-      ))}
+}): JSX.Element => (
+  <div className={styles.ticketContainer}>
+    <div className={styles.ticketHeader}>
+      <span className={styles.ticketPrice}>{price} $</span>
+      <span
+        className={styles.ticketCarrier}
+        style={{ backgroundColor: `${getRandomColor()}` }}
+      >
+        {carrier}
+      </span>
     </div>
-  );
-};
+    {segments.map(({ origin, destination, date, stops, duration }) => (
+      <div key={date + origin} className={styles.ticketInfo}>
+        <div className={styles.ticketInfoBox}>
+          <span className={styles.ticketFlightTimeConnection}>
+            {origin} - {destination}
+          </span>
+          <span className={styles.ticketFlightTime}>
+            {convertISODateToHoursAndMinutes(date)} -{" "}
+            {convertISODateToHoursAndMinutes(addMinutesToDate(date, duration))}
+          </span>
+        </div>
+        <div className={styles.ticketInfoBox}>
+          <span className={styles.ticketFlightDurationTitle}>Duration</span>
+          <span className={styles.ticketFlightDurationNumber}>
+            {toHoursAndMinutes(duration)}
+          </span>
+        </div>
+        <div className={styles.ticketInfoBox}>
+          <span className={styles.ticketFlightStopsTitle}>
+            {stops.length === 0 ? (
+              <span>Direct</span>
+            ) : (
+              <>
+                {stops.length === 1
+                  ? `${stops.length} stop`
+                  : `${stops.length} stops`}
+              </>
+            )}
+          </span>
+          <span className={styles.ticketFlightStops}>{stops.join(", ")}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+);
 
 export default Ticket;
