@@ -4,8 +4,7 @@
   flex-direction: column;
 
   width: 100%;
-
-  background-color: #f1fcff;
+  height: 100%;
 }
 
 .mainPageLogo {
@@ -55,4 +54,33 @@
   flex-direction: column;
 
   width: 70%;
+}
+
+.mainPageButton {
+  margin: 20px 0 50px 0;
+  padding: 15px 0;
+
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+
+  color: #ffffff;
+
+  border: none;
+  border-radius: 5px;
+
+  background-color: #2196f3;
+
+  cursor: pointer;
+
+  transition: all 0.5s ease;
+}
+
+.mainPageButton:hover {
+  background-color: #57abf0;
 }

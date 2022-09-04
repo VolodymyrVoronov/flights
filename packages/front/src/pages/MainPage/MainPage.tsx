@@ -76,12 +76,18 @@ const MainPage = (): JSX.Element => {
           <TabsFilter onTabsFilterChange={onTabsFilterChange} />
 
           {error && <div>Error</div>}
-          {!loading && (
+          {loading ? (
+            <div>Loading</div>
+          ) : (
             <>
               <Tickets tickets={tickets.getAllTickets.slice(0, sliceIndex)} />
-              <br />
-              <br />
-              <button onClick={onShowMoreButtonClick} type="button">
+
+              <button
+                className={styles.mainPageButton}
+                onClick={onShowMoreButtonClick}
+                type="button"
+                role="button"
+              >
                 Show more tickets
               </button>
             </>
