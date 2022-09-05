@@ -34,14 +34,14 @@ const MainPage = (): JSX.Element => {
 
   const filters = JSON.stringify([...flightsFilters, ...tabsFilter]);
 
-  const { loading, error, data, refetch } = useQuery(GET_ALL_FLIGHTS, {
-    variables: { filters },
-  });
-
   useEffect(() => {
     refetch({ filters });
     setSliceIndex(5);
   }, [flightsFilters, tabsFilter]);
+
+  const { loading, error, data, refetch } = useQuery(GET_ALL_FLIGHTS, {
+    variables: { filters },
+  });
 
   const onFlightsFiltersChange = useMemo(
     () =>
@@ -64,6 +64,8 @@ const MainPage = (): JSX.Element => {
   };
 
   const tickets = data;
+
+  console.log(data);
 
   return (
     <div className={styles.mainPage}>

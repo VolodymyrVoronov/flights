@@ -2,12 +2,14 @@ interface IFiltersData {
   id: number;
   title: string;
   checked: boolean;
+  type: string;
 }
 
 interface ITabsFilterData {
   id: number;
   text: string;
   checked: boolean;
+  type: string;
 }
 
 interface ISegment {

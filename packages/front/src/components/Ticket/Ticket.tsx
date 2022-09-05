@@ -33,15 +33,6 @@ const addMinutesToDate = (date: string, minutes: number): string => {
   return new Date(d.getTime() + minutes * 60000).toISOString();
 };
 
-const getRandomColor = (): string => {
-  var letters = "0123456789ABCDEF";
-  var color = "#";
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-};
-
 const Ticket: FC<ITicketProps> = ({
   price,
   carrier,
@@ -50,12 +41,7 @@ const Ticket: FC<ITicketProps> = ({
   <div className={styles.ticketContainer}>
     <div className={styles.ticketHeader}>
       <span className={styles.ticketPrice}>{price} $</span>
-      <span
-        className={styles.ticketCarrier}
-        style={{ backgroundColor: `${getRandomColor()}` }}
-      >
-        {carrier}
-      </span>
+      <span className={styles.ticketCarrier}>{carrier}</span>
     </div>
     {segments.map(({ origin, destination, date, stops, duration }) => (
       <div key={date + origin} className={styles.ticketInfo}>

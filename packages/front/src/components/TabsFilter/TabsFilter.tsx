@@ -8,9 +8,9 @@ import { ITabsFilterProps } from "./TabsFilter.props";
 import styles from "./TabsFilter.module.css";
 
 const tabsFilterData: ITabsFilterData[] = [
-  { id: 111, text: "The cheapest", checked: true },
-  { id: 222, text: "The fastest", checked: false },
-  { id: 333, text: "The optimal", checked: false },
+  { id: 111, text: "The cheapest", checked: true, type: "cheapest" },
+  { id: 222, text: "The fastest", checked: false, type: "fastest" },
+  { id: 333, text: "The optimal", checked: false, type: "optimal" },
 ];
 
 const TabsFilter: FC<ITabsFilterProps> = ({
