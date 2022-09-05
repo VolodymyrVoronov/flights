@@ -65,8 +65,6 @@ const MainPage = (): JSX.Element => {
 
   const tickets = data;
 
-  console.log(data);
-
   return (
     <div className={styles.mainPage}>
       <Logo

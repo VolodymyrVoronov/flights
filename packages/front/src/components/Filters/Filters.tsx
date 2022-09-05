@@ -33,6 +33,7 @@ const Filters: FC<IFiltersProps> = ({
               ...filters.map((f) => (f.checked = true)),
             };
           }
+
           if (filter.type === "all" && filter.checked) {
             return {
               ...filter,
@@ -48,6 +49,7 @@ const Filters: FC<IFiltersProps> = ({
             checked: !filter.checked,
           };
         }
+
         return filter;
       })
     );
